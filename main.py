@@ -18,15 +18,27 @@ if read_ini():
 
 while True:
 
-    command = input(' _> ')
+    command = input(MESSAGES[0])
 
-    if command in ('quit', 'выход'):
+    # выход из программы
+    if command in COMMANDS('quit'):
         # обработка завершения работы приложения
         break
-    if command in ('quit', 'выход'):
-        break
-    elif command in ('new', 'yes', 'новая', 'да'):
+    # показать справку
+    elif command in COMMANDS('help'):
+        show_help()
+    elif command in COMMANDS('scores'):
+        pass
+    # начало новой партии
+    elif command in COMMANDS('new'):
         # есть ли текущий игрок
         if not PLAYER:
-            # начало новой партии
+            # запрос имени игрока
             player_name()
+
+        if game_mode():
+            # продолжаем сохранённую партию
+            pass
+        else:
+            # начинаем новую партию
+            pass
